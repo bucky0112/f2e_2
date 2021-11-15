@@ -10,7 +10,12 @@ const key = import.meta.env.VITE_MAP_STYLE_KEY
 
 const MainMap = () => {
   return (
-    <MapContainer center={position} zoom={8} scrollWheelZoom={false}>
+    <MapContainer
+      center={position}
+      zoom={8}
+      scrollWheelZoom={false}
+      className='w-screen h-screen'
+    >
       <TileLayer
         url={`https://api.mapbox.com/styles/v1/${USER}/${key}/tiles/256/{z}/{x}/{y}@2x?access_token=${TOKEN}`}
         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
