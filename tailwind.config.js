@@ -11,6 +11,10 @@ module.exports = {
         lg: '2rem'
       }
     },
+    backgroundColor: theme => ({
+      ...theme('colors'),
+      primary: '#e5e5e5'
+    }),
     extend: {}
   },
   variants: {
