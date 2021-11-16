@@ -28,9 +28,9 @@ const Navbar = () => {
   const [hoverState, setHoverState] = useState(null)
 
   return (
-    <nav className='flex pt-6 px-12 justify-between'>
-      <h1 className='cursor-pointer'>
-        <p className='flex items-center text-xl font-medium'>
+    <nav className='flex pt-6 px-12 justify-between border-2 border-gray-300'>
+      <h1 className='cursor-pointer font-medium'>
+        <p className='flex items-center text-xl font-semibold'>
           <MdDirectionsBike className='mr-1' />
           <span className='text-purple-500'>自行車道</span>地圖資訊整合網
         </p>
