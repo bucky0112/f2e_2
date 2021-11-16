@@ -16,6 +16,9 @@ module.exports = {
       primary: '#e5e5e5',
       'dark-green': '#006D77'
     }),
+    height: {
+      'screen-3/5': '63vh'
+    },
     extend: {}
   },
   variants: {
