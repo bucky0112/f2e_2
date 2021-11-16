@@ -8,6 +8,10 @@
     "CITY_VALUE": "Taipei"
   },
   {
+    "CITY_NAME": "台北市",
+    "CITY_VALUE": "Taipei"
+  },
+  {
     "CITY_NAME": "新北市",
     "CITY_VALUE": "NewTaipei"
   },
@@ -29,6 +33,10 @@
   },
   {
     "CITY_NAME": "臺中市",
+    "CITY_VALUE": "Taichung"
+  },
+  {
+    "CITY_NAME": "台中市",
     "CITY_VALUE": "Taichung"
   },
   {
