@@ -24,16 +24,11 @@ const links = [
   }
 ]
 
-const enterStyle =
-  'flex items-center gap-0.5 pb-9 cursor-pointer border-solid border-b-8 border-purple-500 transition-all'
-const leaveStyle =
-  'flex items-center gap-0.5 pb-9 cursor-pointer border-solid border-b-8 border-transparent transition-all'
-
 const Navbar = () => {
   const [hoverState, setHoverState] = useState(null)
 
   return (
-    <nav className='flex pt-9 px-14 justify-between'>
+    <nav className='flex pt-6 px-12 justify-between'>
       <h1 className='cursor-pointer'>
         <p className='flex items-center text-xl font-medium'>
           <MdDirectionsBike className='mr-1' />
@@ -45,11 +40,13 @@ const Navbar = () => {
           return (
             <li
               key={link.id}
-              className={hoverState === link.id ? enterStyle : leaveStyle}
+              className={hoverState === link.id ? 'nav-enter' : 'nav-leave'}
               onMouseEnter={() => setHoverState(link.id)}
               onMouseLeave={() => setHoverState(null)}
             >
-              <link.icon className={hoverState === link.id ? 'text-purple-500' : null} />
+              <link.icon
+                className={hoverState === link.id ? 'text-purple-500' : null}
+              />
               {link.title}
             </li>
           )
