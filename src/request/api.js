@@ -22,10 +22,14 @@ const getAuthorizationHeader = () => {
 }
 
 const baseRequest = axios.create({
-  baseURL: 'https://ptx.transportdata.tw/MOTC/v2/Bike/',
+  baseURL: 'https://ptx.transportdata.tw/MOTC/v2/',
   headers: getAuthorizationHeader()
 })
 
 // 取得指定城市自行車租借站位資料
 export const apiGetBikeStation = (city) =>
-  baseRequest.get(`Station/${city}?$format=JSON`)
+  baseRequest.get(`Bike/Station/${city}?$format=JSON`)
+
+// 取得指定城市自行車道路
+export const apiGetCyclingShape = (city) =>
+  baseRequest.get(`Cycling/Shape/${city}?$format=JSON`)

@@ -1,0 +1,90 @@
+[
+  {
+    "CITY_NAME": "基隆市",
+    "CITY_VALUE": "Keelung"
+  },
+  {
+    "CITY_NAME": "臺北市",
+    "CITY_VALUE": "Taipei"
+  },
+  {
+    "CITY_NAME": "新北市",
+    "CITY_VALUE": "NewTaipei"
+  },
+  {
+    "CITY_NAME": "桃園市",
+    "CITY_VALUE": "Taoyuan"
+  },
+  {
+    "CITY_NAME": "新竹縣",
+    "CITY_VALUE": "HsinchuCounty"
+  },
+  {
+    "CITY_NAME": "新竹市",
+    "CITY_VALUE": "Hsinchu"
+  },
+  {
+    "CITY_NAME": "苗栗縣",
+    "CITY_VALUE": "MiaoliCounty"
+  },
+  {
+    "CITY_NAME": "臺中市",
+    "CITY_VALUE": "Taichung"
+  },
+  {
+    "CITY_NAME": "彰化縣",
+    "CITY_VALUE": "ChanghuaCounty"
+  },
+  {
+    "CITY_NAME": "南投縣",
+    "CITY_VALUE": "NantouCounty"
+  },
+  {
+    "CITY_NAME": "雲林縣",
+    "CITY_VALUE": "YunlinCounty"
+  },
+  {
+    "CITY_NAME": "嘉義市",
+    "CITY_VALUE": "Chiayi"
+  },
+  {
+    "CITY_NAME": "嘉義縣",
+    "CITY_VALUE": "ChiayiCounty"
+  },
+  {
+    "CITY_NAME": "台南市",
+    "CITY_VALUE": "Tainan"
+  },
+  {
+    "CITY_NAME": "高雄市",
+    "CITY_VALUE": "Kaohsiung"
+  },
+  {
+    "CITY_NAME": "屏東縣",
+    "CITY_VALUE": "PingtungCounty"
+  },
+  {
+    "CITY_NAME": "台東縣",
+    "CITY_VALUE": "TaitungCounty"
+  },
+  {
+    "CITY_NAME": "花蓮縣",
+    "CITY_VALUE": "HualienCounty"
+  },
+  {
+    "CITY_NAME": "宜蘭縣",
+    "CITY_VALUE": "YilanCounty"
+  },
+  {
+    "CITY_NAME": "澎湖縣",
+    "CITY_VALUE": "PenghuCounty"
+  },
+  {
+    "CITY_NAME": "金門縣",
+    "CITY_VALUE": "KinmenCounty"
+  },
+  {
+    "CITY_NAME": "連江縣",
+    "CITY_VALUE": "LienchiangCounty"
+  }
+]

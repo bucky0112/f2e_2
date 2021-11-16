@@ -1,9 +1,51 @@
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { RiSearch2Line } from 'react-icons/ri'
 import { MdMyLocation, MdKeyboardArrowDown } from 'react-icons/md'
 import { GoSettings } from 'react-icons/go'
+import allCity from '../utils/allCity.json'
+import { apiGetCyclingShape } from '../request/api'
+
+const initialState = {
+  cityValue: '',
+  allCyclingShape: []
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'getAllCyclingShape':
+      return {
+        ...state,
+        allCyclingShape: action.payload
+      }
+    default:
+      return state
+  }
+}
 
 const Search = () => {
+  const filterCity = allCity.filter((city) => {
+    return city.CITY_NAME.match('台中市')
+  })
+
+  console.log(filterCity)
+
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  state.allCyclingShape.length > 0 &&
+    console.log(state.allCyclingShape[0].Geometry)
+
+  const fetchShape = async () => {
+    try {
+      const res = await apiGetCyclingShape('Taichung')
+      res.status === 200 && dispatch({ type: 'getAllCyclingShape', payload: res.data })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    fetchShape()
+  }, [])
+
   return (
     <div className='bg-primary pt-16 px-20 grid grid-rows-2 grid-cols-3 justify-center gap-x-20 gap-y-10'>
       <div className='flex items-center relative col-span-2'>
@@ -11,6 +53,7 @@ const Search = () => {
           type='text'
           placeholder='鄉鎮市區、縣市、郵遞區號'
           className='bg-primary border-b-2 pb-2 border-solid border-gray-400 outline-none text-5xl font-light w-full absolute top-5'
+          onChange={(e) => console.log(e.target.value)}
         />
         <button
           type='button'
