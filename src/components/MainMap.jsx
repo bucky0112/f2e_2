@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import SearchContext from '../store/SearchContext'
+import SearchResults from './SearchResults'
 
 const USER = import.meta.env.VITE_MAP_USER
 const TOKEN = import.meta.env.VITE_MAP_TOKEN
@@ -43,34 +44,37 @@ const MainMap = () => {
   ]
 
   return (
-    <>
-      {currentLatitude && (
-        <MapContainer
-          center={position}
-          zoom={15}
-          scrollWheelZoom={false}
-          className='w-screen h-screen-3/5'
-        >
-          <TileLayer
-            url={`https://api.mapbox.com/styles/v1/${USER}/${key}/tiles/256/{z}/{x}/{y}@2x?access_token=${TOKEN}`}
-            attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-          />
-          <Polyline pathOptions={limeOptions} positions={defaultLine} />
-          {/* {multiPosition.length > 0 && (
+    <div className='relative'>
+      <SearchResults />
+      <div className='absolute z-10'>
+        {currentLatitude && (
+          <MapContainer
+            center={position}
+            zoom={15}
+            scrollWheelZoom={false}
+            className='w-screen h-screen'
+          >
+            <TileLayer
+              url={`https://api.mapbox.com/styles/v1/${USER}/${key}/tiles/256/{z}/{x}/{y}@2x?access_token=${TOKEN}`}
+              attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+            />
+            <Polyline pathOptions={limeOptions} positions={defaultLine} />
+            {/* {multiPosition.length > 0 && (
             <Polyline
               pathOptions={limeOptions}
               positions={multiPosition[0].coordinates}
             />
           )} */}
 
-          {/* <Marker position={[currentLatitude, currentLongitude]}>
+            {/* <Marker position={[currentLatitude, currentLongitude]}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker> */}
-        </MapContainer>
-      )}
-    </>
+          </MapContainer>
+        )}
+      </div>
+    </div>
   )
 }
 
