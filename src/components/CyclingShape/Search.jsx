@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { RiSearch2Line } from 'react-icons/ri'
 import { MdMyLocation, MdKeyboardArrowDown } from 'react-icons/md'
 import { GoSettings } from 'react-icons/go'
-import SearchContext from '../store/SearchContext'
-import { apiGetCyclingShape } from '../request/api'
+import SearchContext from '../../store/SearchContext'
+import { apiGetCyclingShape } from '../../request/api'
 
 const Search = () => {
   const { state, dispatch } = useContext(SearchContext)

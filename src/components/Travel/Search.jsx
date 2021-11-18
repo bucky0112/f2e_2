@@ -2,23 +2,25 @@ import React, { useContext } from 'react'
 import { RiSearch2Line } from 'react-icons/ri'
 import { MdMyLocation, MdKeyboardArrowDown } from 'react-icons/md'
 import { GoSettings } from 'react-icons/go'
-import SearchContext from '../store/SearchContext'
-import { apiGetCyclingShape } from '../request/api'
+import SearchContext from '../../store/SearchContext'
+import { apiGetScenicSpot, apiGetRestaurant } from '../../request/api'
 
 const Search = () => {
   const { state, dispatch } = useContext(SearchContext)
 
-  const handleFetchCyclingShape = async (city) => {
+  const { inputText, allTravel, cityValue } = state
+
+  const handleFetchTravel = async (city) => {
     try {
-      const res = await apiGetCyclingShape(city)
-      res.status === 200 &&
-        dispatch({ type: 'getAllCyclingShape', payload: res.data })
+      const spot = await apiGetScenicSpot(city)
+      const res = await apiGetRestaurant(city)
+      if (spot.status === 200 && res.status === 200) {
+        dispatch({ type: 'getAllTravel', spot: spot.data, res: res.data })
+      }
     } catch (err) {
       console.log(err)
     }
   }
-
-  const { inputText, cityValue, allCyclingShape } = state
 
   return (
     <div className='bg-primary pt-16 px-20 grid grid-rows-2 grid-cols-3 justify-center gap-x-20 gap-y-10'>
@@ -35,19 +37,19 @@ const Search = () => {
         <button
           type='button'
           className='py-6 px-10 rounded-lg bg-dark-green absolute right-0 hover:bg-green-500 hover:scale-110 motion-reduce:transform-none transition-all'
-          onClick={() => handleFetchCyclingShape(cityValue[0].CITY_VALUE)}
+          onClick={() => handleFetchTravel(cityValue[0].CITY_VALUE)}
         >
           <RiSearch2Line className='text-white text-3xl' />
         </button>
       </div>
       <button className='flex items-center justify-center gap-3 text-2xl font-semibold border-2 border-gray-300 py-5 px-20 rounded-xl bg-white shadow hover:scale-110 motion-reduce:transform-none transition'>
         <MdMyLocation className='text-purple-500' />
-        我附近的自行車道
+        我附近的美食與景點
       </button>
-      {allCyclingShape.length > 0 && (
+      {allTravel.length > 0 && (
         <>
           <h3 className='text-2xl font-semibold'>
-            您附近有{allCyclingShape.length}條自行車道
+            您附近有{allTravel.length}個美食與景點
           </h3>
           <div className='col-start-3 row-start-2 justify-self-end'>
             <button className='flex items-center gap-3 text-2xl font-semibold'>

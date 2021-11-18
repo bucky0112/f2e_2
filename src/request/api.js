@@ -33,3 +33,15 @@ export const apiGetBikeStation = (city) =>
 // 取得指定城市自行車道路
 export const apiGetCyclingShape = (city) =>
   baseRequest.get(`Cycling/Shape/${city}?$format=JSON`)
+
+// 取得指定城市即時車位
+export const apiGetBikeAvailability = (city) =>
+  baseRequest.get(`Bike/Availability/${city}?$format=JSON`)
+
+// 取得指定城市觀光景點
+export const apiGetScenicSpot = (city) =>
+  baseRequest.get(`Tourism/ScenicSpot/${city}?$orderby=Address&$format=JSON`)
+
+// 取得指定城市觀光餐飲資料
+export const apiGetRestaurant = (city) =>
+  baseRequest.get(`Tourism/Restaurant/${city}?$orderby=Address&$format=JSON`)
