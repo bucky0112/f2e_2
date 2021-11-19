@@ -7,15 +7,32 @@ const SearchResults = () => {
   const { state } = useContext(SearchContext)
   const { cyclingShapeFirstPage } = state
 
+  const handleChangePosition = (item) => {
+    console.log(item)
+    /* dispatch({
+      type: 'getShowSpot',
+      payload: item.Position
+    })
+
+    const { Position } = item
+
+    dispatch({
+      type: 'getCurrentPosition',
+      latitude: Position.PositionLat,
+      longitude: Position.PositionLon
+    }) */
+  }
+
   return (
     <>
       {cyclingShapeFirstPage.length > 0 && (
-        <ul className='absolute z-20 bg-white'>
+        <ul className='absolute z-20 left-11 bg-white'>
           {cyclingShapeFirstPage.map((item, i) => {
             return (
               <li
                 key={i}
                 className='container py-3 px-5 cursor-pointer flex justify-between gap-10 border-b-2 border-gray-300 hover:bg-gray-100'
+                onClick={() => handleChangePosition(item)}
               >
                 <div className='flex flex-col items-start justify-between'>
                   <h4>{item.RouteName}</h4>

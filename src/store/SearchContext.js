@@ -28,7 +28,7 @@ export const initialState = {
 
 const transToArray = (text) => new Wkt.Wkt().read(text).toJson()
 
-const mergeAlernatively = (arr1, arr2) => {
+/* const mergeAlernatively = (arr1, arr2) => {
   const res = []
   for (let i = 0; i < arr1.length + arr2.length; i++) {
     if (i % 2 === 0) {
@@ -38,7 +38,7 @@ const mergeAlernatively = (arr1, arr2) => {
     }
   }
   return res
-}
+} */
 
 const paginate = (array, pageSize, pageNumber) =>
   array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
@@ -114,12 +114,19 @@ export const reducer = (state, action) => {
     case 'getAllTravel':
       return {
         ...state,
-        allTravel: mergeAlernatively(action.spot, action.res),
-        travelFirstPage: paginate(
+        // allTravel: mergeAlernatively(action.spot, action.res),
+        allTravel: action.spot.concat(action.res),
+        /* travelFirstPage: paginate(
           mergeAlernatively(action.spot, action.res),
           5,
           1
-        )
+        ) */
+        travelFirstPage: paginate(action.spot.concat(action.res), 5, 1)
+      }
+    case 'splitTravelPage':
+      return {
+        ...state,
+        travelFirstPage: paginate(action.payload, 5, 1)
       }
     case 'getShowSpot':
       return {
