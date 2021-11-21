@@ -1,5 +1,12 @@
 import React, { useEffect, useContext } from 'react'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  Polyline
+} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import SearchContext from '../store/SearchContext'
 import SearchResults from './SearchResults'
@@ -9,6 +16,8 @@ import SearchTravelResult from './Travel/SearchTravelResult'
 const USER = import.meta.env.VITE_MAP_USER
 const TOKEN = import.meta.env.VITE_MAP_TOKEN
 const key = import.meta.env.VITE_MAP_STYLE_KEY
+
+const defaultPosition = [24.0438267, 120.5427104]
 
 const ChangeView = ({ center, zoom }) => {
   const map = useMap()
@@ -29,7 +38,14 @@ const MainMap = () => {
     })
   }, [])
 
-  const { currentLatitude, currentLongitude, showSpot } = state
+  const {
+    currentLatitude,
+    currentLongitude,
+    showSpot,
+    multiPosition,
+    stationName,
+    viewName
+  } = state
 
   const { PositionLat, PositionLon } = showSpot
 
@@ -43,7 +59,7 @@ const MainMap = () => {
       <div className='absolute z-10'>
         {currentLatitude && (
           <MapContainer
-            center={position}
+            center={position[0] ? position : defaultPosition}
             zoom={10}
             scrollWheelZoom={false}
             className='w-screen h-screen'
@@ -55,10 +71,11 @@ const MainMap = () => {
             />
             {PositionLat && (
               <Marker position={[PositionLat, PositionLon]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
+                <Popup>{stationName || viewName}</Popup>
               </Marker>
+            )}
+            {multiPosition.coordinates.length > 0 && (
+              <Polyline positions={multiPosition.coordinates} />
             )}
           </MapContainer>
         )}

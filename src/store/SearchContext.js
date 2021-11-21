@@ -15,7 +15,9 @@ export const initialState = {
   stationCombineData: [],
   currentLatitude: 0,
   currentLongitude: 0,
-  multiPosition: [],
+  multiPosition: {
+    coordinates: []
+  },
   cyclingShapeFirstPage: [],
   stationFirstPage: [],
   allTravel: [],
@@ -23,7 +25,9 @@ export const initialState = {
   showSpot: {
     PositionLat: 0,
     PositionLon: 0
-  }
+  },
+  stationName: '',
+  viewName: ''
 }
 
 const transToArray = (text) => new Wkt.Wkt().read(text).toJson()
@@ -68,9 +72,9 @@ export const reducer = (state, action) => {
       return {
         ...state,
         allCyclingShape: action.payload,
-        multiPosition: action.payload.map((item) => {
+        /* multiPosition: action.payload.map((item) => {
           return transToArray(item.Geometry)
-        }),
+        }), */
         cyclingShapeFirstPage: paginate(action.payload, 5, 1)
       }
     case 'getStationCityValue':
@@ -133,6 +137,21 @@ export const reducer = (state, action) => {
         ...state,
         showSpot: action.payload
       }
+    case 'getMultiSpot':
+      return {
+        ...state,
+        multiPosition: transToArray(action.payload)
+      }
+    case 'getItemStationName':
+      return {
+        ...state,
+        stationName: action.payload
+      }
+    case 'getItemViewName':
+      return {
+        ...state,
+        viewName: action.payload
+      }
     case 'clearAll':
       return {
         ...state,
@@ -142,7 +161,9 @@ export const reducer = (state, action) => {
         allStationAvailability: [],
         stationCombineData: [],
         allStation: [],
-        multiPosition: [],
+        multiPosition: {
+          coordinates: []
+        },
         cyclingShapeFirstPage: [],
         stationFirstPage: [],
         allTravel: [],
@@ -150,7 +171,9 @@ export const reducer = (state, action) => {
         showSpot: {
           PositionLat: 0,
           PositionLon: 0
-        }
+        },
+        stationName: '',
+        viewName: ''
       }
     default:
       return state

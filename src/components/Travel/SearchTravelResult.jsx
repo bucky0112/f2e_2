@@ -19,6 +19,8 @@ const SearchTravelResult = () => {
       latitude: Position.PositionLat,
       longitude: Position.PositionLon
     })
+
+    dispatch({ type: 'getItemViewName', payload: item.Name })
   }
 
   return (

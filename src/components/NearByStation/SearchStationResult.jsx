@@ -30,6 +30,8 @@ const SearchStationResults = () => {
       latitude: StationPosition.PositionLat,
       longitude: StationPosition.PositionLon
     })
+
+    dispatch({ type: 'getItemStationName', payload: item.StationName.Zh_tw })
   }
 
   return (

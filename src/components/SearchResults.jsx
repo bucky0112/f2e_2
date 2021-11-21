@@ -4,11 +4,11 @@ import SearchContext from '../store/SearchContext'
 const transferKM = (num) => num / 1000
 
 const SearchResults = () => {
-  const { state } = useContext(SearchContext)
+  const { state, dispatch } = useContext(SearchContext)
   const { cyclingShapeFirstPage } = state
 
   const handleChangePosition = (item) => {
-    console.log(item)
+    dispatch({ type: 'getMultiSpot', payload: item.Geometry })
     /* dispatch({
       type: 'getShowSpot',
       payload: item.Position
